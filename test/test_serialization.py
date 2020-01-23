@@ -212,6 +212,7 @@ class SerializationMixin(object):
             self.assertFalse(torch.serialization._is_zipfile(f))
             self.assertEqual(torch.load(f.name), t)
 
+    @unittest.skipIf(not PY3, "gzip doesn't support os.seek(0, os.SEEK_END) on Python 2")
     def test_serialization_gzip(self):
         # Test serialization with gzip file
         b = self._test_serialization_data()
@@ -257,6 +258,7 @@ class SerializationMixin(object):
             self.assertIsInstance(x3, type(x))
             self.assertEqual(x, x3)
 
+    @unittest.skipIf(not PY3, "gzip doesn't support os.seek(0, os.SEEK_END) on Python 2")
     def test_serialization_offset_gzip(self):
         a = torch.randn(5, 5)
         i = 41

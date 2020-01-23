@@ -12,6 +12,7 @@ import tempfile
 import unittest
 import warnings
 import types
+import pickle
 import textwrap
 from torch.utils.dlpack import from_dlpack, to_dlpack
 from torch._six import inf, nan, string_classes, istuple
